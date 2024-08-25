@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log('JS connected');
 
     const button = document.getElementById('myButton');
-    var unityInstance;
+    var MyGameInstance;
 
     console.log('Script started');
 
@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', function () {
         unityFrame.onload = function() {
             console.log('iframe loaded');
 
-            unityInstance = unityFrame.contentWindow.unityInstance;
+            MyGameInstance = unityFrame.contentWindow.unityInstance;
             console.log('iframe contentWindow:', unityFrame.contentWindow);
 
-            if (unityInstance) {
+            if (MyGameInstance) {
                 button.disabled = false;
                 console.log('Unity instance initialized.');
             } else {
@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     function sendMessageToUnity() {
-        if (unityInstance) {
-            unityInstance.SendMessage('WebGLTestObject', 'ReceiveMessage', 'Hello from JavaScript');
+        if (MyGameInstance) {
+            MyGameInstance.SendMessage('WebGLTestObject', 'ReceiveMessage', 'Hello from JavaScript');
             console.log('Message sent to Unity.');
         } else {
             console.log('Unity instance not yet initialized.');
